@@ -2,6 +2,7 @@
 //= require jquery-tablesorter
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.cycle.all
 //= require retina
 //= require prettify/prettify
 //= require prettyprint

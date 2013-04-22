@@ -1,0 +1,23 @@
+.iphone {
+  float: right;
+  position: relative;
+}
+.screenshots {
+  position: absolute;
+  top: 123px;
+  left: 38px;
+}
+
+.how-to-become-a-rails-developer {
+  #new_user {
+    float: right;
+    width: 320px;
+    margin-left: 20px;
+
+    input[type=submit] {
+      text-transform: none;
+      font-size: 2em;
+      padding: 12px 25px 50px
+    }
+  }
+}

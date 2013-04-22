@@ -9,6 +9,8 @@ class PagesController < HighVoltage::PagesController
 
   def layout_for_page
     case params[:id]
+    when 'how-to-become-a-rails-developer'
+      'landing_page'
     when 'prime'
       'empty-body'
     when 'learnsale'

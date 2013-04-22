@@ -1,0 +1,130 @@
+<% content_for :subject, 'How to Become a Rails Developer' %>
+<% content_for :additional_body_classes, 'how-to-become-a-rails-developer'%>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <h2>The Journey</h2>
+    <p>This isn't a short journey. Becoming a great
+    developer takes time and practice.</p>
+
+    <h2>thoughtbot Learn</h2>
+      <% unless signed_in? %>
+        <%= semantic_form_for User.new do |form| %>
+          <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to] %>
+          <%= form.inputs do %>
+            <%= form.input :first_name %>
+            <%= form.input :last_name %>
+            <%= form.input :email, as: :email %>
+            <%= form.input :password, required: true %>
+          <% end %>
+          <%= form.actions do %>
+            <%= form.action :submit, label: 'Sign up for Learn' %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <p>The Ruby community sets an amazing pace of innovation. It often feels like
+      "best practices" have a shelf-life of a few months before being replaced
+      by better ideas. Between Rails' constant changes and a neverending stream
+      of new gems and philosophies, it’s a real challenge to keep up with the
+      state of the art.</p>
+
+      <p>In response to this, we do a lot of teaching in the Ruby community. Our
+      blog receives millions of hits, and our podcast has thousands of
+      listeners. For topics that are beyond the scope of these mediums, we
+      create paid screencasts, ebooks, and workshops. We've had thousands of
+      purchases of these products, and people rave about them.</p>
+
+      <p>Unfortunately, this one-off purchase model presents two problems.</p>
+
+      <p>First, some of our products are expensive. We think our workshops are the
+      best in the business, but their $1,000 price tag puts them out of reach of
+      many people.</p>
+
+      <p>Second, they fail to address the fact that learning must be continual.
+      There’s just too much to learn and practice. Buying dozens of educational
+      products per year is ad-hoc, and needlessly frustrating.</p>
+
+      <p>To address these issues, we've created Learn Prime: subscription-based
+      access to everything we teach.</p>
+
+
+    <h2>The Learn iPhone app</h2>
+    <div class="iphone">
+      <%= image_tag 'iphone.png' %>
+      <div class="screenshots">
+        <% (1..6).each do |i| %>
+          <%= image_tag "ios-#{i}.jpg" %>
+        <% end %>
+      </div>
+    </div>
+
+
+    <p>Use the free Learn iPhone app to track your progress in the following topics:</p>
+
+    <p>
+      <ul>
+        <li>Code Review</li>
+        <li>Git</li>
+        <li>JavaScript</li>
+        <li>Refactoring</li>
+        <li>Ruby Ruby on Rails</li>
+        <li>SQL</li>
+        <li>Testing</li>
+        <li>UNIX</li>
+      </ul>
+    </p>
+
+    <p>The app gives you some simple tasks to self-assess your ability to perform tasks
+    you'll need every day on the job as a Rails developer.</p>
+
+    <p>For example, the Git topic says "You should be able to:"<p>
+
+    <ul>
+      <li>Add a file to staging</li>
+      <li>Unstage a file</li>
+      <li>Check status</li>
+      <li>View a diff</li>
+      <li>etc.</li>
+    </ul>
+
+    <p>If you aren't able to perform those tasks, the app curates related resources to
+    train yourself. It often points to free documentation.</p>
+
+    <p>Your goal is to able to perform all of the "Beginner" and "Intermediate" tasks.</p>
+
+    <p>If you get stuck at any point, use Learn Prime to get expert help via private
+chat room. Or, if you want to really dedicate yourself via in-person training,
+apply to Dev Bootcamp (9 weeks), Starter League (10 weeks), or gSchool (6
+months).</p>
+
+
+  <h2>Apprenticeship</h2>
+
+  <p>When you're able to perform all of the "Beginner" and "Intermediate" tasks, I
+  suggest applying for an apprenticeship such as apprentice.io in Boston, San
+  Francisco, Stockholm, or Boulder. It is a three month program paying you
+  $500/week in which you have a mentor with whom you work one-on-one with every
+  day on the apps that they work on.</p>
+
+  <p>It's expected that you only apply to apprentice.io if you want to work at
+  thoughtbot, a consultancy, after the program.</p>
+
+  <p>In my opinion, there is no better way to get from intermediate to advanced
+  levels that to be mentored one-on-one for an extended period of time with
+  someone more experienced than you.</p>
+
+  <p>After some combination of training yourself using the Learn iPhone app, going
+  through a training program like Dev Bootcamp, Starter League, or gSchool, and
+  going through a mentoring program like apprentice.io, you'll be qualified for a
+  full-time developer job paying somewhere in the $75,000-$90,000 range, depending
+  on the city, your work, and the fit at the employer.</p>
+
+  <h2>Employment</h2>
+  <p>Consultancies tend to be good for people who care about quality, craftsmanship,
+  self-improvement, and variety of projects.</p>
+
+  <p>Startups tend to be good for people who care about focusing on one product, high
+  energy environments, and the unexpected.</p>
+  </div>
+</div>
