@@ -74,6 +74,8 @@ Workshops::Application.routes.draw do
     resource :purchases_charts, only: :show
   end
 
+  resources :subscriber_engagements, only: :index
+
   match '/auth/:provider/callback', to: 'auth_callbacks#create'
 
   get "/pages/*id" => 'pages#show', :as => :page, :format => false
