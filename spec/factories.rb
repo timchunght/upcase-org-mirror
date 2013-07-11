@@ -23,6 +23,10 @@ FactoryGirl.define do
     "user#{n}"
   end
 
+  sequence :uid do |n|
+    "abc123#{n}"
+  end
+
   factory :alternate do
     ignore do
       key 'online_workshop'
@@ -305,8 +309,19 @@ FactoryGirl.define do
     end
   end
 
-  factory :oauth_access_token do
+  factory :oauth_access_token, class: Doorkeeper::AccessToken do
     application_id 1
-    token 'abc123'
+    token { generate :uid }
+  end
+
+  factory :oauth_application, class: Doorkeeper::Application do
+    name
+    uid
+    secret 'secret'
+    redirect_uri 'http://learn.thoughtbot.com'
+
+    factory :discourse_oauth_application do
+      name AccessTokenQuery::DISCOURSE_APPLICATION_NAME
+    end
   end
 end

@@ -45,7 +45,7 @@ class SubscriberEngagement
   private
 
   def user_has_logged_in_to_forum?
-    OauthAccessToken.for_user(@user)
+    AccessTokenQuery.new(Doorkeeper::AccessToken).for_discourse.for_user(@user)
   end
 
   def user_enrolled_in_workshop_in_last_30_days?

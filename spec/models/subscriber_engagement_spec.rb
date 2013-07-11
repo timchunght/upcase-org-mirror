@@ -9,7 +9,7 @@ describe SubscriberEngagement do
 
     it 'is 20 if a user has authenticated with Learn to access the forum' do
       engagement = build_engagement do |user|
-        OauthAccessToken.stubs(:for_user).with(user).returns(stub('token'))
+        discourse_tokens.stubs(:for_user).with(user).returns(stub('token'))
       end
 
       expect(engagement.engagement_score).to eq 20
@@ -40,6 +40,15 @@ describe SubscriberEngagement do
 
       expect(engagement.engagement_score).to eq 20
     end
+
+    before do
+      query = stub('access_token_query')
+      AccessTokenQuery.stubs(:new).with(Doorkeeper::AccessToken).returns(query)
+      query.stubs(:for_discourse).returns(discourse_tokens)
+      discourse_tokens.stubs(:for_user).returns(nil)
+    end
+
+    let(:discourse_tokens) { stub('discourse_tokens') }
   end
 
   describe '#count_of_workshops_taken' do
