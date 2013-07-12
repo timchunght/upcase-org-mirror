@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-feature 'Customer engagement' do
+feature 'Subscriber engagement' do
   scenario 'An admin views a user with 0 engagement' do
     user_with_zero_engagement = create(:subscription).user
 
-    visit customer_metrics_path
+    visit subscriber_engagements_path
 
-    expect(page).to have_content("Customer Engagement Index")
+    expect(page).to have_content('Subscriber Engagement Index')
 
     within('.engagement-score') do
       expect(page).to have_content("0")
@@ -19,7 +19,7 @@ feature 'Customer engagement' do
       create(:section_purchase, user: user)
     end
 
-    visit customer_metrics_path
+    visit subscriber_engagements_path
 
     within('.workshops-taken') do
       expect(page).to have_content("3")
