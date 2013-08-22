@@ -63,7 +63,7 @@ Workshops::Application.routes.draw do
 
   resources :subscriptions, only: [:new, :update]
 
-  resources :plans, only: [] do
+  resources :individual_plans, only: [] do
     resources :purchases, only: [:new, :create]
     resources :stripe_redemptions, only: [:new]
   end

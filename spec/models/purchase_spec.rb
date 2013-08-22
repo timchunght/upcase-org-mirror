@@ -258,7 +258,7 @@ describe Purchase, 'of a subscription' do
   def build_plan_purchase
     build(
       :plan_purchase,
-      purchaseable: create(:plan),
+      purchaseable: create(:individual_plan),
       payment_method: 'stripe'
     )
   end
@@ -562,7 +562,7 @@ describe Purchase, 'given a purchaser' do
 
   context 'for a subscription plan' do
     it 'populates default info including first github_username' do
-      plan = create(:plan)
+      plan = create(:individual_plan)
       purchase = plan.purchases.build
       purchase.defaults_from_user(purchaser)
 
@@ -572,7 +572,7 @@ describe Purchase, 'given a purchaser' do
     end
 
     it 'requires a password if there is no user' do
-      plan = create(:plan)
+      plan = create(:individual_plan)
       purchase = build(:purchase, purchaseable: plan, user: nil)
       purchase.password = ''
 
@@ -583,7 +583,7 @@ describe Purchase, 'given a purchaser' do
 
     it 'creates a user when saved with a password' do
       create_mentors
-      plan = create(:plan)
+      plan = create(:individual_plan)
       purchase = build(:purchase, purchaseable: plan, user: nil)
       purchase.password = 'test'
 

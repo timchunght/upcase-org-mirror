@@ -5,7 +5,7 @@ class Subscription < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :mentor, class_name: User
-  belongs_to :plan
+  belongs_to :plan, polymorphic: true
 
   delegate :includes_mentor?, to: :plan
   delegate :includes_workshops?, to: :plan
@@ -61,7 +61,7 @@ class Subscription < ActiveRecord::Base
   private
 
   def downgraded_plan
-    Plan.where(sku: Subscription::DOWNGRADED_PLAN).first
+    IndividualPlan.where(sku: Subscription::DOWNGRADED_PLAN).first
   end
 
   def stripe_customer

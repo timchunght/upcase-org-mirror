@@ -8,7 +8,7 @@ describe 'successful charges reported by Stripe webhook' do
       :with_subscription,
       stripe_customer_id: FakeStripe::CUSTOMER_ID
     )
-    create(:plan, sku: 'prime')
+    create(:individual_plan, sku: 'prime')
 
     simulate_stripe_webhook_firing
 
@@ -22,7 +22,7 @@ describe 'successful charges reported by Stripe webhook' do
       :with_subscription,
       stripe_customer_id: FakeStripe::CUSTOMER_ID
     )
-    create(:plan, sku: 'prime')
+    create(:individual_plan, sku: 'prime')
 
     simulate_stripe_webhook_firing
 

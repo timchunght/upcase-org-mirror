@@ -149,7 +149,7 @@ describe Subscription do
 
   describe "#downgrade" do
     it "updates the subscription record by setting deactivated_on to today" do
-      downgraded_plan = create(:plan, sku: Subscription::DOWNGRADED_PLAN)
+      downgraded_plan = create(:individual_plan, sku: Subscription::DOWNGRADED_PLAN)
       subscription = create(:active_subscription)
       stripe_customer = stub(
         'Stripe::Customer',
@@ -168,7 +168,7 @@ describe Subscription do
 
   describe "#downgraded?" do
     it 'is downgraded if it is downgraded' do
-      create(:plan, sku: Subscription::DOWNGRADED_PLAN)
+      create(:individual_plan, sku: Subscription::DOWNGRADED_PLAN)
       subscription = create(:active_subscription)
       expect(subscription).not_to be_downgraded
 

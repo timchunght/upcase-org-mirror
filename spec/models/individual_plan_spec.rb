@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Plan do
+describe IndividualPlan do
   it { should have_many(:announcements) }
   it { should have_many(:purchases) }
   it { should have_many(:subscriptions) }
@@ -17,25 +17,25 @@ describe Plan do
 
   describe '.active' do
     it 'only includes active plans' do
-      active = create(:plan, active: true)
-      inactive = create(:plan, active: false)
-      expect(Plan.active).to eq [active]
+      active = create(:individual_plan, active: true)
+      inactive = create(:individual_plan, active: false)
+      expect(IndividualPlan.active).to eq [active]
     end
   end
 
   describe '.featured' do
     it 'only featured plans' do
-      featured = create(:plan, featured: true)
-      notfeatured = create(:plan, featured: false)
-      expect(Plan.featured).to eq [featured]
+      featured = create(:individual_plan, featured: true)
+      notfeatured = create(:individual_plan, featured: false)
+      expect(IndividualPlan.featured).to eq [featured]
     end
   end
 
   describe '.ordered' do
     it 'sorts by individual price' do
-      second = create(:plan, individual_price: 29)
-      first = create(:plan, individual_price: 99)
-      expect(Plan.ordered).to eq [first, second]
+      second = create(:individual_plan, individual_price: 29)
+      first = create(:individual_plan, individual_price: 99)
+      expect(IndividualPlan.ordered).to eq [first, second]
     end
   end
 
@@ -44,61 +44,61 @@ describe Plan do
       ordered = stub(first: stub())
       featured = stub(ordered: ordered)
       active = stub(featured: featured)
-      Plan.stubs(active: active)
+      IndividualPlan.stubs(active: active)
 
-      Plan.default
+      IndividualPlan.default
 
       expect(ordered).to have_received(:first)
       expect(featured).to have_received(:ordered)
       expect(active).to have_received(:featured)
-      expect(Plan).to have_received(:active)
+      expect(IndividualPlan).to have_received(:active)
     end
   end
 
   describe '.prime_basic' do
-    it 'returns the instance of Plan corresponding to Prime Basic' do
+    it 'returns the instance of IndividualPlan corresponding to Prime Basic' do
       create_prime_basic_plan
 
-      expect(Plan.prime_basic).to eq Plan.find_by_sku(Plan::PRIME_BASIC_SKU)
+      expect(IndividualPlan.prime_basic).to eq IndividualPlan.find_by_sku(IndividualPlan::PRIME_BASIC_SKU)
     end
   end
 
   describe '.prime_workshops' do
-    it 'returns the Plan instance corresponding to Prime Workshops' do
+    it 'returns the IndividualPlan instance corresponding to Prime Workshops' do
       create_prime_workshops_plan
 
-      expect(Plan.prime_workshops).to eq Plan.find_by_sku(Plan::PRIME_WORKSHOPS_SKU)
+      expect(IndividualPlan.prime_workshops).to eq IndividualPlan.find_by_sku(IndividualPlan::PRIME_WORKSHOPS_SKU)
     end
   end
 
   describe '.prime_with_mentoring' do
-    it 'returns the Plan instance corresponding to Prime with Mentoring' do
+    it 'returns the IndividualPlan instance corresponding to Prime with Mentoring' do
       create_prime_with_mentoring_plan
 
-      expect(Plan.prime_with_mentoring).to eq Plan.find_by_sku(Plan::PRIME_WITH_MENTORING_SKU)
+      expect(IndividualPlan.prime_with_mentoring).to eq IndividualPlan.find_by_sku(IndividualPlan::PRIME_WITH_MENTORING_SKU)
     end
   end
 
   describe '#subscription_count' do
     it 'returns 0 when the plan has no subscriptions' do
-      plan = create(:plan)
+      plan = create(:individual_plan)
       expect(plan.subscription_count).to eq 0
     end
 
     it 'returns 1 when the plan has a single active subscription that is paid' do
-      plan = create(:plan)
+      plan = create(:individual_plan)
       create(:active_subscription, plan: plan, paid: true)
       expect(plan.subscription_count).to eq 1
     end
 
     it 'returns 0 when the plan has an active subscription that is unpaid' do
-      plan = create(:plan)
+      plan = create(:individual_plan)
       create(:active_subscription, plan: plan, paid: false)
       expect(plan.subscription_count).to eq 0
     end
 
     it 'returns 0 when the plan has only an inactive subscription' do
-      plan = create(:plan)
+      plan = create(:individual_plan)
       create_inactive_subscription_for(plan)
       expect(plan.subscription_count).to eq 0
     end
@@ -106,7 +106,7 @@ describe Plan do
 
   describe '#to_param' do
     it 'returns the sku' do
-      plan = create(:plan)
+      plan = create(:individual_plan)
       plan.to_param.should == "#{plan.sku}"
     end
   end
@@ -133,21 +133,21 @@ describe Plan do
 
   describe 'starts_on' do
     it 'returns the given date' do
-      plan = create(:plan)
+      plan = create(:individual_plan)
       expect(plan.starts_on(Time.zone.today)).to eq Time.zone.today
     end
   end
 
   describe 'ends_on' do
     it 'returns the given date' do
-      plan = create(:plan)
+      plan = create(:individual_plan)
       expect(plan.ends_on(Time.zone.today)).to eq Time.zone.today
     end
   end
 
   describe 'subscription_interval' do
     it 'returns the interval from the stripe plan' do
-      plan = build_stubbed(:plan)
+      plan = build_stubbed(:individual_plan)
       stripe_plan = stub(interval: 'year')
       Stripe::Plan.stubs(:retrieve).returns(stripe_plan)
 
@@ -158,7 +158,7 @@ describe Plan do
 
   describe 'offering_type' do
     it 'returns subscription' do
-      plan = build_stubbed(:plan)
+      plan = build_stubbed(:individual_plan)
 
       result = plan.offering_type
 
@@ -168,7 +168,7 @@ describe Plan do
 
   describe 'fulfillment_method' do
     it 'returns subscription' do
-      plan = build_stubbed(:plan)
+      plan = build_stubbed(:individual_plan)
 
       result = plan.fulfillment_method
 
@@ -178,7 +178,7 @@ describe Plan do
 
   describe '#alternates' do
     it 'is empty' do
-      plan = Plan.new
+      plan = IndividualPlan.new
 
       result = plan.alternates
 
@@ -189,22 +189,22 @@ describe Plan do
   describe '#announcement' do
     it 'calls Announcement.current' do
       Announcement.stubs :current
-      plan = create(:plan)
+      plan = create(:individual_plan)
       plan.announcement
       expect(Announcement).to have_received(:current)
     end
   end
 
   def create_prime_basic_plan
-    create(:plan, sku: Plan::PRIME_BASIC_SKU)
+    create(:individual_plan, sku: IndividualPlan::PRIME_BASIC_SKU)
   end
 
   def create_prime_workshops_plan
-    create(:plan, sku: Plan::PRIME_WORKSHOPS_SKU)
+    create(:individual_plan, sku: IndividualPlan::PRIME_WORKSHOPS_SKU)
   end
 
   def create_prime_with_mentoring_plan
-    create(:plan, sku: Plan::PRIME_WITH_MENTORING_SKU)
+    create(:individual_plan, sku: IndividualPlan::PRIME_WITH_MENTORING_SKU)
   end
 
   def create_inactive_subscription_for(plan)

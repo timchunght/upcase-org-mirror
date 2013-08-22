@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'User cancels a subscription', js: true do
   scenario 'successfully unsubscribes' do
-    prime = create(:plan, sku: 'prime', name: 'Prime')
+    prime = create(:individual_plan, sku: 'prime', name: 'Prime')
     create(:online_section,
       workshop: create(:workshop, name: 'A Cool Workshop')
     )

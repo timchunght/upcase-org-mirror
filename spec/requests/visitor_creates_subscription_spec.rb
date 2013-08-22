@@ -90,7 +90,7 @@ feature 'Visitor is asked to create a user before subscription' do
   end
 
   def expect_to_be_on_subscription_purchase_page
-    expect(current_url).to eq new_plan_purchase_url(plan)
+    expect(current_url).to eq new_individual_plan_purchase_url(plan)
   end
 
   def expect_to_see_email_required
@@ -123,7 +123,7 @@ feature 'Visitor is asked to create a user before subscription' do
   end
 
   def create_plan
-    @plan = create(:plan)
+    @plan = create(:individual_plan)
   end
 
   def sign_out

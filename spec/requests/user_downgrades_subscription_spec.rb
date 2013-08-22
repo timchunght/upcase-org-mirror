@@ -2,9 +2,9 @@ require 'spec_helper'
 
 feature 'User downgrades subscription', js: true do
   scenario 'successfully downgrades and then cancels' do
-    prime = create(:plan, sku: 'prime', name: 'Prime')
+    prime = create(:individual_plan, sku: 'prime', name: 'Prime')
     downgrade_plan = create(
-      :plan,
+      :individual_plan,
       sku: Subscription::DOWNGRADED_PLAN,
       includes_workshops: false,
       includes_mentor: false

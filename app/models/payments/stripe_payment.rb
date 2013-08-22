@@ -77,11 +77,11 @@ module Payments
     def update_subscription
       if @purchase.stripe_coupon_id.present?
         stripe_customer.update_subscription(
-          plan: @purchase.purchaseable_sku,
+          individual_plan: @purchase.purchaseable_sku,
           coupon: @purchase.stripe_coupon_id
         )
       else
-        stripe_customer.update_subscription(plan: @purchase.purchaseable_sku)
+        stripe_customer.update_subscription(individual_plan: @purchase.purchaseable_sku)
       end
     end
 

@@ -144,7 +144,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :plan do
+  factory :individual_plan do
     name 'Prime'
     company_price 0
     individual_price 99
@@ -210,7 +210,7 @@ FactoryGirl.define do
     end
 
     factory :plan_purchase do
-      association :purchaseable, factory: :plan
+      association :purchaseable, factory: :individual_plan
       user
     end
   end
@@ -313,7 +313,7 @@ FactoryGirl.define do
 
   factory :subscription, aliases: [:active_subscription] do
     association :mentor, factory: :user
-    association :plan
+    association :plan, factory: :individual_plan
     association :user, :with_github, :with_stripe
     factory :inactive_subscription do
       deactivated_on Time.zone.today

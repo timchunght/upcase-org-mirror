@@ -172,7 +172,7 @@ feature 'User creates a subscription' do
   end
 
   def create_plan
-    @plan = create(:plan)
+    @plan = create(:individual_plan)
   end
 
   def sign_in

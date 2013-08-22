@@ -17,12 +17,12 @@ describe PurchasesController do
     end
   end
 
-  describe '#new when purchasing a plan as a user with and active subscription' do
+  describe '#new when purchasing a plan as a user with an active subscription' do
     it 'renders a subscriber-specific layout' do
       user = create(:user, :with_subscription)
       stub_current_user_with(user)
 
-      get :new, plan_id: user.subscription.plan
+      get :new, individual_plan_id: user.subscription.plan
 
       expect(response).to render_template 'new'
     end
@@ -68,11 +68,11 @@ describe PurchasesController do
     it 'sends a message to the notifier' do
       create_mentors
       stub_current_user_with(create(:user))
-      plan = create(:plan)
+      plan = create(:individual_plan)
       notifier = stub('notifier', :notify_of_purchase)
       KissmetricsEventNotifier.stubs(:new).returns(notifier)
 
-      post :create, purchase: customer_params, plan_id: plan
+      post :create, purchase: customer_params, individual_plan_id: plan
 
       notifier.should have_received(:notify_of_purchase).with(assigns(:purchase))
     end

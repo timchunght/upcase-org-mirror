@@ -161,7 +161,7 @@ describe Payments::StripePayment do
     build(
       :plan_purchase,
       {
-        purchaseable: create(:plan),
+        purchaseable: create(:individual_plan),
         payment_method: 'stripe'
       }.merge(overrides)
     )
