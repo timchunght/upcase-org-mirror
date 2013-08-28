@@ -22,6 +22,7 @@ describe PurchasesController do
       user = create(:user, :with_subscription)
       stub_current_user_with(user)
 
+      # TODO: shouldn't this be plan_id and plan_type?
       get :new, individual_plan_id: user.subscription.plan
 
       expect(response).to render_template 'new'

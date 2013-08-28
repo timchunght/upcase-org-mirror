@@ -1,4 +1,8 @@
 # This class represents a user's subscription to Learn content
+#
+# TODO: Write migration for setting plan_type on existing subscriptions
+#
+#
 class Subscription < ActiveRecord::Base
   MAILING_LIST = 'Active Subscribers'
   DOWNGRADED_PLAN = 'prime-basic'

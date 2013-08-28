@@ -49,6 +49,7 @@ class PurchasesController < ApplicationController
     current_user_has_active_subscription? && included_in_subscription?
   end
 
+  # TODO: extract methods.
   def included_in_subscription?
     !plan_purchase? &&
       (!workshop_purchase? || (workshop_purchase? && subscription_includes_workshops?))

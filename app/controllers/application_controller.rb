@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
     if params[:product_id]
       Product.find(params[:product_id])
     elsif params[:individual_plan_id]
+      # TODO: sku not id?
       IndividualPlan.where(sku: params[:individual_plan_id]).first
     else
       Section.find(params[:section_id])

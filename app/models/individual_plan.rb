@@ -7,6 +7,7 @@ class IndividualPlan < ActiveRecord::Base
   has_many :purchases, as: :purchaseable
   has_many :subscriptions, as: :plan
 
+  # TODO: get rid of company_price
   validates :company_price, presence: true
   validates :description, presence: true
   validates :individual_price, presence: true
