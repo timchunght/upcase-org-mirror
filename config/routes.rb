@@ -107,7 +107,7 @@ Workshops::Application.routes.draw do
   get '/directions' => "pages#show", as: :directions, id: "directions"
   get '/group-training' => "pages#show", as: :group_training, id: "group-training"
   get '/humans-present/oss' => "pages#show", as: :humans_present_oss, id: "humans-present-oss"
-  get '/how-to-become-a-rails-developer' => "pages#show", 
+  get '/how-to-become-a-rails-developer' => "pages#show", as: :how_to_become_a_rails_developer, id: "how-to-become-a-rails-developer"
   get '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
   get '/5by5' => redirect('/workshops/19-design-for-developers?utm_source=5by5')
   get '/rubyist-booster-shot' => "pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"

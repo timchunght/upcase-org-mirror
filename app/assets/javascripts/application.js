@@ -26,4 +26,8 @@ $(function() {
   }
 
   $('textarea').autosize();
+  $('.screenshots').cycle({
+    fx:      'scrollLeft',
+    timeout:  300
+  });
 });
