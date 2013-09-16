@@ -1,0 +1,40 @@
+.level {
+  border: 1px solid $darkwarmgray;
+  border-width: 1px 0 1px 0;
+  overflow: auto;
+
+  h3 {
+    width: flex-grid(4);
+    clear: both;
+  }
+
+  .actions {
+    float: left;
+    margin: 0 flex-gutter() 0 0;
+    width: flex-grid(4);
+
+    a {
+      display: block;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .resources, .validations {
+    float: left;
+    width: flex-grid(8);
+  }
+
+  ul, ol {
+    list-style-type: none;
+    margin: 0;
+    @include columns(2);
+  }
+
+  .resources {
+
+  }
+
+  .validations {
+    float: right;
+  }
+}
