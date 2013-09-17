@@ -3,10 +3,11 @@
   border-width: 0 0 1px 0;
   overflow: auto;
   padding: 2rem 0;
+  position: relative;
 
   &:first-of-type {
     border-width: 1px 0 1px 0;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   h3, h4 {
@@ -21,7 +22,7 @@
 
   .actions {
     float: left;
-    margin: 2.8rem flex-gutter() 0 0;
+    margin: 43px flex-gutter() 0 0;
     width: flex-grid(4);
 
     .workshop {
@@ -30,7 +31,7 @@
     }
 
     .capstone {
-      border: 3px solid $darkwarmgray;
+      border: 3px solid $learndarkred;
       padding: 1rem;
 
       h5 {
@@ -62,12 +63,31 @@
 
     ul, ol {
       list-style-type: none;
-      margin: 0 0 1rem;
+      margin: 0 0 .5rem;
       @include columns(2);
+    }
+
+    li {
+      display: inline-block;
+      margin: 0 0 .75rem;
+      width: 100%;
+    }
+
+    li a {
+      background: lighten($warmgray, 8%);
+      display: block;
+      padding: .4rem .6rem;
     }
   }
 
   .validations {
     float: right;
+
+    li {
+      display: list-item;
+      list-style-type: disc;
+      margin-left: 1.2rem;
+      width: auto;
+    }
   }
 }
