@@ -26,9 +26,11 @@ input[type="submit"] {
   display: inline-block;
   font: 600 14px/1.4em $sans-serif;
   height: 44px;
+  letter-spacing: 1px;
   margin: 0 auto;
   padding: .75em 1em;
   text-align:center;
+  text-rendering: optimizeLegibility;
   text-transform: uppercase;
 
   &:hover {

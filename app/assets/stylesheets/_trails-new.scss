@@ -21,12 +21,38 @@
 
   .actions {
     float: left;
-    margin: 3rem flex-gutter() 0 0;
+    margin: 2.8rem flex-gutter() 0 0;
     width: flex-grid(4);
 
-    > a {
+    .workshop {
       display: block;
       margin-bottom: 1rem;
+    }
+
+    .capstone {
+      border: 3px solid $darkwarmgray;
+      padding: 1rem;
+
+      h5 {
+        color: $darkwarmgray;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: .5rem;
+        text-align: center;
+        text-transform: uppercase;
+        -webkit-font-smoothing: inherit;
+      }
+
+      ol {
+        list-style-position: inside;
+        margin: 0;
+      }
+
+      li {
+        list-style-type: decimal;
+        margin: 0;
+      }
     }
   }
 
