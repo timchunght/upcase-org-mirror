@@ -1,0 +1,192 @@
+<%= content_for :additional_body_classes, 'prime-marketing' %>
+
+<% if signed_in? %>
+  <%= link_to 'account', my_account_path, class: 'prime-signin' %>
+<% else %>
+  <%= link_to 'sign in', sign_in_path, class: 'prime-signin' %>
+<% end %>
+
+<section class="journey-headline">
+  <div class="logo">
+    <h1>
+      <%= image_tag('learn/learn-ralph.png') %>
+    </h1>
+  </div>
+  <h1>Become a product designer.</h1>
+  <h1>Learn from one of the most well-respected design and development shops in the world.<br /><%= link_to t('subscriptions.join_cta'), new_subscription_path %></h1>
+</section>
+
+<section class="journey">
+  <section class="pitch center">
+    <article>
+      <figure id="bullet-1" class="journey-bullet">1.</figure>
+      <h2><span>Join <%= t('shared.subscription.name') %> to</span> work with a mentor</h2>
+      <p>thoughtbot mentors like Lisa and Andrew will hold calls with you once a month to discuss whatever you like: design ideas, code review, landing your first front-end designer job, etc.</p>
+    </article>
+    <figure class="supporting-visual mentors">
+      <% featured_mentors.each do |mentor| %>
+        <div>
+          <%= mentor_image(mentor) %>
+          <p><strong>This is <%= mentor.first_name %></strong>. <%= mentor.bio %></p>
+        </div>
+      <% end %>
+    </figure>
+  </section>
+  <section class="pitch left enroll">
+    <article>
+      <figure id="bullet-2" class="journey-bullet">2.</figure>
+      <h2>Enroll in premium, hands-on workshops</h2>
+      <p>Our workshops are more than just video tutorials. You&rsquo;ll build real apps and communicate directly with thoughtbot designers.</p>
+    </article>
+    <figure class="supporting-visual two-stacked">
+      <div>
+        <h3>Online workshops</h3>
+        <div>
+          <figure class="workshop-online product-card">
+            <%= link_to '/workshops/20-intro-to-ruby-on-rails', title: 'The Intro to Ruby on Rails online workshop details' do %>
+              <h4>Intro to Ruby on Rails</h4>
+              <%= image_tag('workshop_thumbs/intro-to-ruby-on-rails.png') %>
+              <h5>Online Workshop</h5>
+              <p>Learn how to develop web applications using Ruby on Rails</p>
+            <% end %>
+          </figure>
+        </div>
+      </div>
+      <div>
+        <h3>&nbsp;</h3>
+        <div>
+          <figure class="workshop-online product-card">
+            <%= link_to '/workshops/22-hands-on-backbone-js-on-rails', title: 'The Hands-on Backbone.js on Rails online workshop details' do %>
+              <h4>Front-End Development</h4>
+              <%= image_tag('workshop_thumbs/design-for-developers.png') %>
+              <h5>Online Workshop</h5>
+              <p>Learn thoughtbot's methods for writing efficient and semantic HTML and CSS.</p>
+            <% end %>
+          </figure>
+        </div>
+      </div>
+    </figure>
+  </section>
+  <section class="pitch center">
+    <article>
+      <figure id="bullet-3" class="journey-bullet">3.</figure>
+      <h2>Collaborate with thoughtbot designers and other members</h2>
+      <p>Don&rsquo;t design and develop alone. Communicate with the thoughtbot design team and other motivated professionals. Ask questions about workshops, books, or personal projects. Join interesting conversations.</p>
+    </article>
+    <figure class="supporting-visual two-screenshot">
+      <%= image_tag('learn/forum-4.png') %>
+    </figure>
+  </section>
+  <section class="pitch left exclusive-content">
+    <article>
+      <figure id="bullet-4" class="journey-bullet">4.</figure>
+      <h2>Receive exclusive content, weekly</h2>
+      <p>The Ruby community sets an amazing pace of innovation. It often feels like "best practices" have a shelf-life of a few months before being replaced by better ideas. Between Rails&rsquo; constant changes and a never-ending stream of new gems and philosophies, it’s a real challenge to keep up with the state of the art.</p>
+      <p>Stay on top of it all with our private <%= t('shared.bytes') %> blog, our books, and screencasts on vim, development tools, and more.</p>
+    </article>
+    <figure class="supporting-visual two-stacked">
+      <div>
+        <h3>Screencasts</h3>
+        <div class="figuregroup">
+          <figure class="screencast product-card">
+            <%= link_to '/products/5-hidden-secrets-of-the-chrome-developer-tools', title: 'The Hidden Secrets of the Chrome Developer Tools screencast details' do %>
+              <figure>
+                <%= image_tag('screencast_thumbs/secrets.png') %>
+              </figure>
+              <h5>Screencast</h5>
+              <h4>Hidden Secrets of the Chrome Developer Tools</h4>
+              <p>Speed up your day-to-day web development work</p>
+            <% end %>
+          </figure>
+          <figure class="screencast product-card">
+            <%= link_to '/products/6-humans-present-refactoring', title: 'The Humans Present: Refactoring screencast details' do %>
+              <figure>
+                <%= image_tag('screencast_thumbs/refactoring.png') %>
+              </figure>
+              <h5>Screencast</h5>
+              <h4>Humans Present: Refactoring</h4>
+              <p>Make Your Code Better</p>
+            <% end %>
+          </figure>
+          <figure class="screencast product-card">
+            <%= link_to '/products/17-the-art-of-vim', title: 'The Art of Vim screencast details' do %>
+              <figure>
+                <%= image_tag('screencast_thumbs/vim-for-rails.png') %>
+              </figure>
+              <h5>Screencast</h5>
+              <h4>The Art of Vim</h4>
+              <p>Create and edit your code more efficiently</p>
+            <% end %>
+          </figure>
+        </div>
+      </div>
+      <div>
+        <h3>Books</h3>
+        <div class="figuregroup">
+          <figure class="book product-card"><%= link_to image_tag('product_images/book/backbone-cover-large.png'), '/products/1-backbone-js-on-rails' %></figure>
+          <figure class="book product-card"><%= link_to image_tag('product_images/book/playbook-cover-large.png'), '/products/3-the-playbook' %></figure>
+          <figure class="book product-card"><%= link_to image_tag('product_images/book/rubyscience-cover-large.png'), '/products/13-ruby-science' %></figure>
+        </div>
+      </div>
+      <div>
+        <h3><%= t('shared.bytes') %></h3>
+        <div class="figuregroup">
+          <figure class="byte product-card">
+            <h4 class="byte-title">A git-bisect Duet</h4>
+            <p>git bisect uses binary search to find which change introduced a bug, given an old "good" commit and a later "bad" commit.</p>
+            <p>DJCP asks: Who&rsquo;s used git bisect? I would like to use it to figure out...</p>
+          </figure>
+          <figure class="byte product-card">
+            <h4 class="byte-title">SASS !default</h4>
+            <p>Recently, a client asked us to create a white label app: they wanted their customers to be able to customize things like colors, logo, background, etc., but not all customers will want to use custom branding. How do...</p>
+          </figure>
+          <figure class="byte product-card">
+            <h4 class="byte-title">Useful Vim mappings for Refactoring</h4>
+            <p>Convert Ruby 1.8 to 1.9 hash syntax:</p>
+            <p><code>nnoremap <Leader>: :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc<CR></code></p>
+            <p>Add whitespace inside of braces <code>{}</code>...</p>
+            <p><code>nnoremap <Leader>{ :%s/{\([^ ]\)/{ \1/gc<CR></code></p>
+          </figure>
+        </div>
+      </div>
+      <div>
+        <h3>&nbsp;</h3>
+        <div class="figuregroup">
+          <figure class="byte product-card">
+            <h4 class="byte-title">How do I compare a zip file of code with the same directory from Git?</h4>
+            <p>Dan asks: I have a downloaded directory of code that i received via zip file. I have a cloned version of the same app from git. I want to compare if the two are the same...</p>
+          </figure>
+          <figure class="byte product-card">
+            <h4 class="byte-title">SSL for Rails >= 3.1 with Heroku and DNSimple</h4>
+            <p>SSL certificates can be intimidating but Heroku and DNSimple make the process easy. The following steps should take you less than 15 minutes...</p>
+          </figure>
+          <figure class="byte product-card">
+            <h4 class="byte-title">Where did these changes in my schema.rb come from?</h4>
+            <p>Ben asks: If I run rake db:drop:all db:create:all db:migrate db:test:prepare and there are changes in schema.rb, that means its out of sync with what&rsquo;s actually correct...</p>
+          </figure>
+        </div>
+      </div>
+    </figure>
+  </section>
+  <section class="pitch center final">
+    <figure class="supporting-visual">
+      <%= image_tag('learn/dashboard.png') %>
+    </figure>
+    <article>
+      <figure id="bullet-5" class="journey-bullet">5.</figure>
+      <h2>This is the closest thing to working at thoughtbot full-time</h2>
+      <p>We’ve trained hundreds of developers and apprentices over the years, and have a great handle on what it takes to become and remain an expert-level Rubyist.</p>
+      <p>With Learn <%= t('shared.subscription.name') %>, we’ve finally created a service that’s nearly as good as joining thoughtbot full time. If you’re a passionate developer serious about improving and maintaining your skills, we know you’ll get a ton of value out of the service.</p>
+      <%= link_to new_subscription_path, class: 'prime-journey-cta' do %>
+        <h2><%= t('subscriptions.join_cta') %></h2>
+      <% end %>
+      <p class="terms">No minimum subscription length &bull; Get your money back within 30 days if you're not satisfied</p>
+    </article>
+  </section>
+  <div class="curtain"></div>
+</section>
+
+<footer>
+  <p>Learn more about <%= link_to 'thoughtbot', 'http://thoughtbot.com' %> &bull; <%= link_to 'About', 'http://thoughtbot.com/about' %> <%= link_to 'Blog', 'http://robots.thoughtbot.com' %> <%= link_to 'Podcast', 'http://learn.thoughtbot.com/podcast' %> <%= link_to 'Privacy Policy', page_path('privacy') %> <%= link_to 'Terms & Conditions', page_path('terms') %></p>
+  <p>&copy; 2012&ndash;2013 thoughtbot, inc. The design of a robot and thoughtbot are registered trademarks of thoughtbot, inc.</p>
+</footer>
