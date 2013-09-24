@@ -1,92 +1,112 @@
-.new-trails-title {
-  margin: 3rem 0;
-}
-
 .level {
-  border: 1px solid $warmgray;
-  border-width: 0 0 1px 0;
   overflow: auto;
-  padding: 3rem 0;
+  padding: 2rem 0;
   position: relative;
-
-  &:first-of-type {
-    border-width: 1px 0 1px 0;
-    margin-top: 1rem;
-  }
 
   h3, h4 {
     color: $darkwarmgray;
     font: 600 1.3rem/1.3 $sans-serif;
+    margin-bottom: 1.25rem;
   }
 
   h3 {
     font-weight: 800;
-    position: absolute;
+    color: darken($darkwarmgray, 15%);
   }
 
   .actions {
-    float: left;
-    margin: 43px flex-gutter() 0 0;
-    width: flex-grid(4);
+    margin-bottom: 1.25rem;
+    overflow: auto;
+    position: relative;
+    width: 100%;
 
-    .workshop {
+    &:before {
+      background: $learndarkred;
+      content: '';
       display: block;
-      margin-bottom: 1rem;
-    }
-
-    .main-item {
-      border: 3px solid $learndarkred;
-      margin: 0 0 1rem 0;
-      padding: 1rem;
-
-      h5 {
-        color: $darkwarmgray;
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        margin-bottom: .5rem;
-        text-align: center;
-        text-transform: uppercase;
-        -webkit-font-smoothing: inherit;
-      }
-
-      ol, ul {
-        list-style-position: inside;
-        margin: 0;
-      }
-
-      ol li {
-        list-style-type: decimal;
-        margin: 0;
-      }
-
-      ul li {
-        list-style-type: disc;
-        margin: 0;
-      }
-
-      .button {
-        margin: 1rem 0 0;
-      }
+      height: 3px;
+      @include position(absolute, 50% 0px 0 0px);
+      z-index: -1;
     }
   }
 
-  .resources, .validations {
+  .main-item {
+    background: $lightwarmgray;
+    border: 3px solid $learndarkred;
     float: left;
-    width: flex-grid(8);
+    margin: 0 0 1rem 0;
+    padding: 1rem;
+    width: flex-grid(4);
 
-    h4 {
-      margin-bottom: 1.25rem;
+    &:last-of-type {
+      float: right;
     }
 
+    &:first-of-type {
+      float: left;
+    }
+
+    h5 {
+      color: $darkwarmgray;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: .5rem;
+      text-align: center;
+      text-transform: uppercase;
+      -webkit-font-smoothing: inherit;
+    }
+
+    ol, ul {
+      list-style-position: inside;
+      margin: 0;
+    }
+
+    ol li {
+      list-style-type: decimal;
+      margin: 0;
+    }
+
+    ul li {
+      list-style-type: disc;
+      margin: 0;
+    }
+
+    .button {
+      display: block;
+      margin: 1rem 0 0;
+    }
+  }
+
+  .exercises {
+    background: $lightwarmgray;
+    border: 3px solid $learndarkred;
+    border-radius: 100%;
+    display: block;
+    height: 120px;
+    margin: -60px 0 0 -60px;
+    padding: 1rem;
+    @include position(absolute, 50% 0 0 50%);
+    text-align: center;
+    width: 120px;
+
+    a {
+      display: block;
+      margin-top: .5rem;
+    }
+  }
+
+  .secondary-list {
+    float: left;
+    width: flex-grid(4);
+
     ul, ol {
-      @include columns(2);
       list-style-type: none;
-      margin: 0 0 .5rem;
+      margin: 0;
     }
 
     li {
-      display: inline-block;
+      display: block;
       margin: 0 0 .75rem;
       width: 100%;
     }
@@ -99,11 +119,14 @@
     }
   }
 
+  .our-resources, .resources {
+    margin-right: flex-gutter();
+  }
+
   .validations {
     background: none;
     border: 0;
     box-shadow: none;
-    float: right;
     margin-bottom: 0;
 
     h4 {
@@ -118,10 +141,8 @@
       background: none;
       border: 0;
       color: $darkwarmgray;
-      display: inline-block;
       margin: 0;
       padding: .5rem .5rem .5rem 2.25rem;
-      width: auto;
     }
 
     .trail-bullet-hit-area {
