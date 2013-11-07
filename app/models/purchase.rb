@@ -180,9 +180,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def fulfill
-    if fulfilled_with_github?
-      GithubFulfillment.new(self).fulfill
-    end
+    GithubFulfillment.new(self).fulfill
     SubscriptionFulfillment.new(self).fulfill
     MailchimpFulfillment.new(self).fulfill
   end

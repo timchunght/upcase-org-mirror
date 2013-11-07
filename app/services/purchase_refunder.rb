@@ -10,9 +10,7 @@ class PurchaseRefunder < SimpleDelegator
   private
 
   def remove_fullfilments
-    if fulfilled_with_github?
-      GithubFulfillment.new(self).remove
-    end
+    GithubFulfillment.new(self).remove
     MailchimpFulfillment.new(self).remove
   end
 

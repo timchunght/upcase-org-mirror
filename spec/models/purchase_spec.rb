@@ -151,12 +151,11 @@ describe Purchase do
   context 'when not fulfilled_with_github' do
     it 'does not fulfill with github' do
       purchase = build(:paid_purchase)
-      fulfillment = stub(:fulfill)
-      GithubFulfillment.stubs(:new).returns(fulfillment)
+      GithubFulfillmentJob.stubs(:enqueue)
 
       purchase.save!
 
-      fulfillment.should have_received(:fulfill).never
+      expect(GithubFulfillmentJob).to have_received(:enqueue).never
     end
   end
 

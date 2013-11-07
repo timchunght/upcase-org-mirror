@@ -23,12 +23,11 @@ describe PurchaseRefunder, '#refund' do
   context 'when not fulfilled_with_github' do
     it 'does not remove from github' do
       purchase = create(:paid_purchase)
-      fulfillment = stub(:remove)
-      GithubFulfillment.stubs(:new).returns(fulfillment)
+      GithubFulfillmentJob.stubs(:enqueue)
 
       PurchaseRefunder.new(purchase).refund
 
-      expect(fulfillment).to have_received(:remove).never
+      expect(GithubFulfillmentJob).to have_received(:enqueue).never
     end
   end
 

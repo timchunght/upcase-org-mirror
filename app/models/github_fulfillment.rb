@@ -4,7 +4,7 @@ class GithubFulfillment
   end
 
   def fulfill
-    if usernames.present?
+    if purchase.fulfilled_with_github? && usernames.present?
       GithubFulfillmentJob.enqueue(team, usernames, @purchase.id)
     end
   end
@@ -16,17 +16,18 @@ class GithubFulfillment
   end
 
   private
+  attr_reader :purchase
 
   def team
     purchaseable.github_team
   end
 
   def purchaseable
-    @purchase.purchaseable
+    purchase.purchaseable
   end
 
   def usernames
-    users = @purchase.github_usernames || []
+    users = purchase.github_usernames || []
     users.map(&:strip).reject(&:blank?).compact
   end
 end
