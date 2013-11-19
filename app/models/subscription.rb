@@ -44,6 +44,14 @@ class Subscription < ActiveRecord::Base
     where('created_at <= ?', time)
   end
 
+  def most_recent_purchase
+    user.purchases.order('created_at desc').first
+  end
+
+  def subscription_length_in_days
+    deactivated_on - created_at.to_date
+  end
+
   def active?
     deactivated_on.nil?
   end

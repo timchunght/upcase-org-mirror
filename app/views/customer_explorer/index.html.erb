@@ -1,23 +1,53 @@
 <h2>Recent churns</h2>
 
+<h3>Recent churns</h3>
 <table>
   <tr>
+    <th>Average time since last purchase before cancel</th>
+    <th>Average sub. length for forum user</th>
+    <th>Average sub. length for non-forum user</th>
+  </tr>
+  <tr>
+    <td><%= @churned_customers.inject(0) { |sum, s| sum + (s.deactivated_on - s.most_recent_purchase.created_at.to_date) } / @churned_customers.count.to_f %></td>
+    <td>
+      <%= @churned_customers.select { |s| s.user.has_logged_in_to_forum? }.inject(0) { |sum, s| sum + (s.subscription_length_in_days) } / @churned_customers.select {|s| s.user.has_logged_in_to_forum? }.count %></td>
+    <td>
+      <%= @churned_customers.select { |s| !s.user.has_logged_in_to_forum? }.inject(0) { |sum, s| sum + (s.subscription_length_in_days) } / @churned_customers.select { |s| !s.user.has_logged_in_to_forum? }.count %></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Subscription ID</th>
     <th>Signed up</th>
     <th>Deactivated on</th>
     <th>Days subscribed</th>
     <th>Purchase count</th>
     <th>Plan name</th>
     <th>Forum login?</th>
+    <th>Date of last purchase</th>
+    <th>Time since last purchase before cancel</th>
+    <th>Instaclaimer</th>
   </tr>
 
   <% @churned_customers.each do |subscription| %>
     <tr>
+      <td><%= subscription.id %>
       <td><%= subscription.created_at.to_s(:short_date) %>
       <td><%= subscription.deactivated_on.to_s(:short_date) %>
-      <td><%= subscription.deactivated_on - subscription.created_at.to_date %>
+      <td><%= subscription.subscription_length_in_days %>
       <td><%= subscription.user.purchases.count %>
       <td><%= subscription.plan.name %>
       <td><%= subscription.user.has_logged_in_to_forum? %>
+      <td><%= subscription.most_recent_purchase.created_at.to_s(:short_date) %>
+      <td><%= subscription.deactivated_on - subscription.most_recent_purchase.created_at.to_date %>
+      <td>
+        <% if subscription.most_recent_purchase.created_at.to_date == subscription.created_at.to_date %>
+          YES
+        <% else %>
+          NO
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
