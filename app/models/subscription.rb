@@ -36,6 +36,7 @@ class Subscription < ActiveRecord::Base
     canceled_within_period(30.days.ago, Time.zone.now)
   end
 
+  # TODO: duplicated method on SubscriptionMetrics
   def self.active_as_of(time)
     where('deactivated_on is null OR deactivated_on > ?', time)
   end
@@ -49,7 +50,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def subscription_length_in_days
-    deactivated_on - created_at.to_date
+    (scheduled_for_cancellation_on || deactivated_on) - created_at.to_date
   end
 
   def active?

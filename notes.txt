@@ -1,0 +1,5 @@
+scheduled_for_cancellation_on = we set this with when the
+subscription is going to end
+
+deactivate_on = we update this when we actually deactivate the
+subscription

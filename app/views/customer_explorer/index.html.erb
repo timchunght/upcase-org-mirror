@@ -20,6 +20,7 @@
   <tr>
     <th>Subscription ID</th>
     <th>Signed up</th>
+    <th>Subscription stops being active date</th>
     <th>Deactivated on</th>
     <th>Days subscribed</th>
     <th>Purchase count</th>
@@ -34,6 +35,7 @@
     <tr>
       <td><%= subscription.id %>
       <td><%= subscription.created_at.to_s(:short_date) %>
+      <td><%= subscription.scheduled_for_cancellation_on.try(:to_s, :short_date) %>
       <td><%= subscription.deactivated_on.to_s(:short_date) %>
       <td><%= subscription.subscription_length_in_days %>
       <td><%= subscription.user.purchases.count %>
