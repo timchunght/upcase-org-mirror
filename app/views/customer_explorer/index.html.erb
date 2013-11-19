@@ -2,18 +2,22 @@
 
 <table>
   <tr>
-    <th>Subscription ID</th>
+    <th>Signed up</th>
+    <th>Deactivated on</th>
     <th>Days subscribed</th>
     <th>Purchase count</th>
-    <th>Signed up</th>
-    <th>Length of sub</th>
+    <th>Plan name</th>
+    <th>Forum login?</th>
   </tr>
 
   <% @churned_customers.each do |subscription| %>
     <tr>
-      <td><%= subscription.id %>
+      <td><%= subscription.created_at.to_s(:short_date) %>
+      <td><%= subscription.deactivated_on.to_s(:short_date) %>
       <td><%= subscription.deactivated_on - subscription.created_at.to_date %>
       <td><%= subscription.user.purchases.count %>
+      <td><%= subscription.plan.name %>
+      <td><%= subscription.user.has_logged_in_to_forum? %>
     </tr>
   <% end %>
 </table>
