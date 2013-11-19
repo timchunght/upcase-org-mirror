@@ -5,6 +5,8 @@ Workshops::Application.routes.draw do
 
   root to: 'homes#show'
 
+  get '/customer_explorer' => 'customer_explorer#index'
+
   get '/api/v1/me.json' => 'api/v1/users#show', as: :resource_owner
   namespace :api do
     namespace :v1 do
