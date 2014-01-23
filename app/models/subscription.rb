@@ -69,6 +69,10 @@ class Subscription < ActiveRecord::Base
     team.present?
   end
 
+  def months_subscribed
+    ((Date.today - created_at.to_date) / 30).round
+  end
+
   private
 
   def self.canceled_within_period(start_time, end_time)

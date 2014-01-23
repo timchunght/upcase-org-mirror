@@ -395,4 +395,15 @@ describe User do
       expect(user.subscription).to be_nil
     end
   end
+
+  describe '#months_subscribed' do
+    it 'delegates to its subscription' do
+      months_subscribed = stub('months_subscribed')
+      subscription = build_stubbed(:subscription)
+      subscription.stubs(:months_subscribed).returns(months_subscribed)
+      user = build_stubbed(:user, subscription: subscription)
+
+      expect(user.months_subscribed).to eq months_subscribed
+    end
+  end
 end

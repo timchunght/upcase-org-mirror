@@ -88,6 +88,10 @@ class User < ActiveRecord::Base
     purchased_subscription || team_subscription
   end
 
+  def months_subscribed
+    subscription.months_subscribed
+  end
+
   private
 
   def team_subscription

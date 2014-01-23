@@ -226,4 +226,30 @@ describe Subscription do
       expect(subscription.team?).to be_false
     end
   end
+
+  describe '#months_subscribed' do
+    it 'returns an integer representing the number of months' do
+      Timecop.freeze(Time.now) do
+        subscription = Subscription.new(created_at: 44.days.ago)
+
+        expect(subscription.months_subscribed).to eq 1
+      end
+    end
+
+    it 'rounds down to the nearest month for less than 15 days' do
+      Timecop.freeze(Time.now) do
+        subscription = Subscription.new(created_at: 14.days.ago)
+
+        expect(subscription.months_subscribed).to eq 0
+      end
+    end
+
+    it 'rounds up to the nearest month for more than 15 days' do
+      Timecop.freeze(Time.now) do
+        subscription = Subscription.new(created_at: 46.days.ago)
+
+        expect(subscription.months_subscribed).to eq 2
+      end
+    end
+  end
 end

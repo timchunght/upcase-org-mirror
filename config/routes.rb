@@ -167,6 +167,8 @@ Workshops::Application.routes.draw do
     resources :acceptances, only: [:new, :create]
   end
 
+  resources :subscriber_details, only: [:show]
+
   mount Split::Dashboard, at: 'split'
 
   mount StripeEvent::Engine, at: 'stripe-webhook'

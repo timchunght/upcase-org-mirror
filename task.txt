@@ -1,0 +1,4 @@
+* User detail page
+  - Show subscription length in months
+  - Display number of paid purchases
+  - Indicate whether superfan
