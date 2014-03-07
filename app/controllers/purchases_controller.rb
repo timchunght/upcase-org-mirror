@@ -8,12 +8,10 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @purchase = requested_purchaseable.purchases.build(purchase_params)
-    @purchase.user = current_user
-    @purchase.coupon = current_coupon
-    @purchase.stripe_customer_id = existing_stripe_customer_id
+    @purchase = requested_purchaseable.purchases.build
+    sale = Sale.new(@purchase, params, current_user)
 
-    if @purchase.save
+    if sale.complete
       sign_in_purchasing_user(@purchase)
 
       redirect_to success_url,
@@ -101,22 +99,6 @@ class PurchasesController < ApplicationController
     end
   end
 
-  def existing_stripe_customer_id
-    if signed_in? && using_existing_card?
-      current_user.stripe_customer_id
-    end
-  end
-
-  def using_existing_card?
-    params[:use_existing_card] == 'on'
-  end
-
-  def current_coupon
-    if params[:coupon_id].present?
-      Coupon.active.find_by_id(params[:coupon_id])
-    end
-  end
-
   def success_url
     @purchase.success_url(self)
   end
@@ -127,13 +109,6 @@ class PurchasesController < ApplicationController
 
   def polymorphic_purchaseable_template
     "#{@purchaseable.to_partial_path}_purchase_show"
-  end
-
-  def purchase_params
-    params.require(:purchase).permit(:stripe_coupon_id, :variant,
-      :name, :email, :password, {:github_usernames => []}, :organization,
-      :address1, :address2, :city, :state, :zip_code, :country,
-      :payment_method, :stripe_token, :mentor_id, :quantity)
   end
 
   def variant
