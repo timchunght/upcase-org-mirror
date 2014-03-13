@@ -1,5 +1,11 @@
 # This class represents a user or team's subscription to Learn content
 class Subscription < ActiveRecord::Base
+  # TODO:
+  #   create a Status object of some kind that accepts a Subscription (or a few of its fields)
+  #   and answers questions about its status that we ask in _subscription.
+  #
+  #   Subscription holds attributes like deactivated_on, but not active?. It knows its data, but not the
+  #   implications of that data.
   belongs_to :user
   belongs_to :plan, polymorphic: true
 
@@ -40,10 +46,6 @@ class Subscription < ActiveRecord::Base
     where(next_payment_on: 2.days.from_now)
   end
 
-  def active?
-    deactivated_on.nil?
-  end
-
   def deactivate
     SubscriptionFulfillment.new(purchase, user).remove
     update_column(:deactivated_on, Time.zone.today)
@@ -67,6 +69,10 @@ class Subscription < ActiveRecord::Base
 
   def team?
     team.present?
+  end
+
+  def changeable_by_subscriber?
+    active? && scheduled_for_cancellation_on.blank?
   end
 
   private
