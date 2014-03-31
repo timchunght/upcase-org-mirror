@@ -1,26 +1,20 @@
-class Sale
+class PurchaseAttributes
   def initialize(options)
-    @purchase = options[:purchase]
     @params = options[:params]
     @user = options[:user]
   end
 
-  def complete
-    purchase.attributes = purchase_params
-    purchase.save
-  end
-
-  private
-
-  attr_reader :purchase, :params, :user
-
-  def purchase_params
+  def build
     permitted_params.merge(
       user: user,
       coupon: coupon,
       stripe_customer_id: existing_stripe_customer_id,
     )
   end
+
+  private
+
+  attr_reader :purchase, :params, :user
 
   def permitted_params
     params.require(:purchase).permit(:stripe_coupon_id, :variant,

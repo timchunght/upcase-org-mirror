@@ -9,11 +9,11 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = requested_purchaseable.purchases.build
-    sale = Sale.new(purchase: @purchase,
-                    params: params,
-                    user: current_user)
+    attributes = PurchaseAttributes.new(params: params, user: current_user).
+      build
+    @purchase.attributes = attributes
 
-    if sale.complete
+    if @purchase.save
       sign_in_purchasing_user(@purchase)
 
       redirect_to success_url,
