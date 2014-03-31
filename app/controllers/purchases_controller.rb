@@ -9,8 +9,10 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = requested_purchaseable.purchases.build
-    attributes = PurchaseAttributes.new(params: params, user: current_user).
-      build
+    attributes =
+      PurchaseAttributes
+        .new(params: params, user: current_user)
+        .build
     @purchase.attributes = attributes
 
     if @purchase.save
