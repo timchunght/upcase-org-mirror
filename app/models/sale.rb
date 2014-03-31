@@ -1,10 +1,18 @@
-class Sale < Struct.new(:purchase, :params, :user)
+class Sale
+  def initialize(options)
+    @purchase = options[:purchase]
+    @params = options[:params]
+    @user = options[:user]
+  end
+
   def complete
     purchase.attributes = purchase_params
     purchase.save
   end
 
   private
+
+  attr_reader :purchase, :params, :user
 
   def purchase_params
     permitted_params.merge(
