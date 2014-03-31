@@ -9,7 +9,9 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = requested_purchaseable.purchases.build
-    sale = Sale.new(@purchase, params, current_user)
+    sale = Sale.new(purchase: @purchase,
+                    params: params,
+                    user: current_user)
 
     if sale.complete
       sign_in_purchasing_user(@purchase)
