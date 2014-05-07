@@ -71,6 +71,8 @@ Workshops::Application.routes.draw do
     end
   end
 
+  resources :coupons, only: [:show]
+
   namespace :subscriber do
     resources :books, only: [] do
       resources :purchases, only: [:new, :create]

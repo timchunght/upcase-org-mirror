@@ -92,6 +92,8 @@ class PurchasesController < ApplicationController
     purchase = requested_purchaseable.purchases.build(variant: variant)
     PurchasePrepopulater.new(purchase, current_user).prepopulate_with_user_info
     purchase.mentor_id = cookies[:mentor_id]
+    purchase.coupon_id = session[:coupon_id]
+    purchase.stripe_coupon_id = session[:stripe_coupon_id]
     purchase
   end
 

@@ -9,7 +9,7 @@
       </ul>
     <% end %>
 
-    <%= hidden_field_tag 'coupon_id' %>
+    <%= form.input :coupon_id, as: :hidden %>
     <%= form.input :stripe_coupon_id, as: :hidden %>
     <%= form.input :variant, as: :hidden %>
     <%= form.input :name %>
@@ -65,8 +65,6 @@
       <input type='text' size='4' autocomplete='off' id='card-cvc' class='card-cvc'/>
     </li>
   <% end %>
-
-  <%= render 'redemptions/form', purchase: @purchase %>
 
   <%= form.actions do %>
     <%= form.action :submit, label: "Submit Payment &mdash; #{submit_amount(@purchase)}".html_safe %>

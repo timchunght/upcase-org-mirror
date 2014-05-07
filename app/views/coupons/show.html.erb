@@ -1,0 +1,5 @@
+<% content_for :subject_block do %>
+  <h1><%= @coupon.code %></h1>
+  <h2><%= coupon_amount(@coupon) %> off will be applied upon checkout</h2>
+  <%= link_to 'Continue shopping', products_path, class: 'button' %>
+<% end %>

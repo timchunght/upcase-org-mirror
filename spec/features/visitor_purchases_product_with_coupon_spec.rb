@@ -8,17 +8,13 @@ feature 'Using coupons' do
     product = create(:screencast)
     create(:coupon, code: 'CODE', discount_type: 'percentage', amount: 10)
 
+    visit coupon_path(coupon)
+    expect(page).to contain('10% off')
+
     visit screencast_path(product)
     click_purchase_link_for(product)
-    click_link 'Have a coupon code?'
-
-    expect(find('.coupon')).to be_visible
-
-    fill_in 'Code', with: 'CODE'
-    click_button 'Apply Coupon'
 
     expect_submit_button_to_contain('10% off')
-    expect(find('.coupon')).to_not be_visible
 
     pay_using_stripe
 
@@ -29,11 +25,11 @@ feature 'Using coupons' do
     product = create(:screencast)
     create(:coupon, code: 'CODE', discount_type: 'percentage', amount: 100)
 
+    visit coupon_path(coupon)
+    expect(page).to contain('100% off')
+
     visit screencast_path(product)
     click_purchase_link_for(product)
-    click_link 'Have a coupon code?'
-    fill_in 'Code', with: 'CODE'
-    click_button 'Apply Coupon'
 
     expect_payment_options_to_be_hidden
 
@@ -47,5 +43,4 @@ feature 'Using coupons' do
   def expect_payment_options_to_be_hidden
     page.should have_no_css('#billing-information')
   end
-
 end
