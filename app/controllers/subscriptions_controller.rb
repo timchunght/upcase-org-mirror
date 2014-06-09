@@ -4,6 +4,7 @@ class SubscriptionsController < ApplicationController
   def new
     @plans = IndividualPlan.featured.active.ordered
     @team_plans = Teams::TeamPlan.featured.ordered
+    @catalog = Catalog.new
 
     render :layout => 'empty-body'
   end
