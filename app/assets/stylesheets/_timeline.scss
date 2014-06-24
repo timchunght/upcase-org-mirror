@@ -13,7 +13,7 @@ body.timelines {
   // the line of the timeline
   &:after {
     content: '';
-    @include linear-gradient(transparent 0px, $warmgray 800px);
+    @include linear-gradient(transparent 0px, darken($base-border-color-1, 5%) 800px);
     margin-left: -2px;
     @include position(absolute, 0px 0 0px 60%);
     width: 4px;
@@ -130,7 +130,7 @@ body.timelines {
   .goal-bullet {
     @extend %trail-bullet-complete;
     @extend %trail-bullet;
-    background-color: $warmgray;
+    background-color: darken($base-border-color-1, 5%);
   }
 
 
@@ -246,7 +246,7 @@ body.timelines {
   }
 
   input[type=submit] {
-    background: #fff;
+    background: $base-background-2;
     border: none;
     color: $learnred;
     font: normal 1rem/1.4 $sans-serif;

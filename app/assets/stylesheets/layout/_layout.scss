@@ -106,7 +106,7 @@ img {
 }
 
 .text-box {
-  @extend %main-content-box;
+  padding: 0 20px 20px;
 
   h1, h2, h3, h4, h5, h6 {
     color: $darkwarmgray;
@@ -175,6 +175,7 @@ img {
 }
 
 aside {
+  @extend %main-content-box;
   @include span-columns(3);
   float: right;
   display: inline-block;

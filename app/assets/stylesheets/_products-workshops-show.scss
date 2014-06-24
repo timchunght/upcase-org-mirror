@@ -110,10 +110,11 @@ body.screencasts-show {
   }
 
   .what-you-learn {
-    @include outer-container;
-    background-color: $lightwarmgray;
-    border-radius: 3px;
+    border: 1px dashed #ccc;
+    border-left: 0;
+    border-right: 0;
     margin: 28px 0 28px 0;
+    @include outer-container;
     padding: 4%;
 
     h3 {
@@ -144,6 +145,8 @@ body.screencasts-show aside,
 body.weekly_iterations-show aside,
 body.episodes-show aside,
 body.purchases-new aside {
+  padding: 20px;
+
   #license > div:last-child {
     margin-bottom: 2rem;
   }
