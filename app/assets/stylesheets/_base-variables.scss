@@ -2,7 +2,6 @@ $sans-serif: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2",
 $serif: skolar-1, skolar-2, serif;
 
 $red: #ad141e;
-$gray: #eee;
 $off-white: darken(white, 1.5);
 $lightwarmgray: #F5F5F0;
 $warmgray: #D9D4CC;
@@ -13,6 +12,11 @@ $green: #83d4b7;
 // $workshop-color: #d75222;
 $workshop-color: #FF633C;
 $screencasts-color: #5c84cb;
+
+$gray-1: #333;
+$gray-2: #666;
+$gray-3: #999;
+$gray-4: #DDD;
 
 $journey-line-color: lighten($warmgray, 3%);
 $bullet-size: 70px;
