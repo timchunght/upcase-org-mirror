@@ -79,7 +79,7 @@ body.timelines {
 }
 
 .week-of {
-  background: $lightwarmgray;
+  background: $base-background-1;
   font: 700 1.2rem/1.5 $sans-serif;
   left: 60%;
   margin: 0 0 4rem -150px;
@@ -227,9 +227,10 @@ body.timelines {
   }
 
   textarea {
-    border: 1px solid #fff;
+    background: $base-background-2;
+    border: 1px solid $base-border-color-1;
     border-radius: 3px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .15);
+    box-shadow: $base-box-shadow;
     color: $darkwarmgray;
     font: normal 1rem/1.4 $sans-serif;
     height: 9rem;
