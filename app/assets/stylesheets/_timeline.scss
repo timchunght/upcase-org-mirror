@@ -13,7 +13,7 @@ body.timelines {
   // the line of the timeline
   &:after {
     content: '';
-    @include linear-gradient(transparent 0px, darken($base-border-color-1, 5%) 800px);
+    @include linear-gradient(transparent 0px, $journey-line-color 800px);
     margin-left: -2px;
     @include position(absolute, 0px 0 0px 60%);
     width: 4px;

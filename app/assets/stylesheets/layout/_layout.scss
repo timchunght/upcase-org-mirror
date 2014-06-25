@@ -106,7 +106,8 @@ img {
 }
 
 .text-box {
-  padding: 0 20px 20px;
+  @extend %main-content-box;
+  padding: 20px;
 
   h1, h2, h3, h4, h5, h6 {
     color: $darkwarmgray;
@@ -176,9 +177,10 @@ img {
 
 aside {
   @extend %main-content-box;
-  @include span-columns(3);
-  float: right;
+  box-shadow: none;
   display: inline-block;
+  float: right;
+  @include span-columns(3);
 
   hgroup {
     margin-left: 48px;
@@ -199,7 +201,7 @@ aside {
   h3 {
     margin-top: 40px;
 
-    &:first-child {
+    &:first-child, &:only-child {
       margin-top: 0;
     }
   }

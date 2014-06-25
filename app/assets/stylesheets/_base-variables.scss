@@ -5,11 +5,10 @@ $red: #ad141e;
 $off-white: darken(white, 1.5);
 $lightwarmgray: #F5F5F0;
 $warmgray: #D9D4CC;
-$darkwarmgray: #6C6A66;
+$darkwarmgray: #4d4d4d;
 $learnred: #B22115;
 $learndarkred: #660000;
 $green: #83d4b7;
-// $workshop-color: #d75222;
 $workshop-color: #FF633C;
 $screencasts-color: #5c84cb;
 
@@ -17,9 +16,6 @@ $gray-1: #333;
 $gray-2: #666;
 $gray-3: #999;
 $gray-4: #DDD;
-
-$journey-line-color: lighten($warmgray, 3%);
-$bullet-size: 70px;
 
 $max-width: 1100px;
 
@@ -35,3 +31,7 @@ $base-border-color-1: #DCDCDC;
 $base-border-color-blue: #E9F2FD;
 
 $base-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+
+$journey-line-color: darken($base-border-color-1, 5%);
+$bullet-size: 70px;
+
