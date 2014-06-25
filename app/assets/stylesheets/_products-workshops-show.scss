@@ -151,7 +151,6 @@ body.screencasts-show aside,
 body.weekly_iterations-show aside,
 body.episodes-show aside,
 body.purchases-new aside {
-  padding: 20px;
 
   #license > div:last-child {
     margin-bottom: 2rem;
@@ -167,8 +166,8 @@ body.purchases-new aside {
     }
 
     .active-subscription, .active-subscription span {
-      font: italic 400 1rem/1.4em $serif;
-      margin: .5rem 0;
+      font: italic 400 0.9rem/1.5em $serif;
+      margin: .5rem 0 0.8rem;
     }
 
     .when {

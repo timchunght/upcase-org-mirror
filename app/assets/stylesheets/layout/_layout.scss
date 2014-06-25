@@ -177,6 +177,7 @@ img {
 
 aside {
   @extend %main-content-box;
+  font-size: $font-size-small;
   box-shadow: none;
   display: inline-block;
   float: right;
@@ -205,6 +206,11 @@ aside {
       margin-top: 0;
     }
   }
+
+  &, p {
+    line-height: 1.5;
+  }
+
 
   .button {
     height: auto;
