@@ -1,7 +1,7 @@
 <%= semantic_form_for invitation do |form| %>
   <%= form.semantic_errors :team %>
   <%= form.inputs do %>
-    <%= form.input :email, as: :email %>
+    <%= form.input :email, as: :email, input_html: { placeholder: "Email Address" }, hint: "Your bill will be increased by $89/month once this user accepts the invitation." %>
     <%= form.submit 'Send invite' %>
   <% end %>
 <% end %>

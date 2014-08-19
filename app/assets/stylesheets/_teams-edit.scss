@@ -1,9 +1,16 @@
 body.teams-edit {
+  h4 {
+    span {
+      font-style: normal;
+      font-weight: normal;
+    }
+  }
+
   .members {
     margin: 0;
     padding: 0;
 
-    .member {
+    li {
       border: 1px solid $warmgray;
       border-radius: 3px;
       display: block;
@@ -15,15 +22,24 @@ body.teams-edit {
       &.pending {
         background: #eee;
         border-style: dashed;
+        font-style: italic;
+      }
 
-        &:before {
-          content: '(pending) ';
+      &.admin {
+        &:after {
+          content: '(admin) ';
         }
       }
 
       a {
+        color: $darkwarmgray;
         padding: 0.5rem 1rem;
         @include position(absolute, 0px 0px 0 0);
+        font-style: normal;
+
+        &:hover {
+          color: $upcase-red;
+        }
       }
     }
   }
@@ -32,7 +48,6 @@ body.teams-edit {
     margin-top: 2rem;
 
     > p {
-      text-align: center;
       font-weight: bold;
     }
 
@@ -42,11 +57,15 @@ body.teams-edit {
 
     li.email, input[type=submit] {
       display: inline-block;
-      vertical-align: bottom;
+      vertical-align: top;
     }
 
     li.email {
-      width: 50%;
+      width: 80%;
+
+      label {
+        display: none;
+      }
     }
 
     input[type=email] {
