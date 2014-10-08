@@ -14,8 +14,8 @@ module Features
       @user = user
     end
 
-    def new(feature_string_or_symbol)
-      @feature_string = feature_string_or_symbol.to_s
+    def new(type:)
+      @feature_string = type.to_s
       feature_class.new(initializer_arguments)
     end
 

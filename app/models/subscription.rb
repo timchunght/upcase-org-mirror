@@ -108,9 +108,9 @@ class Subscription < ActiveRecord::Base
 
   def update_feature_fulfillments(old_plan, new_plan)
     feature_fulfillment = FeatureFulfillment.new(
+      feature_factory: Features::Factory.new(user: user),
       new_plan: new_plan,
-      old_plan: old_plan,
-      user: user
+      old_plan: old_plan
     )
     feature_fulfillment.fulfill_gained_features
     feature_fulfillment.unfulfill_lost_features

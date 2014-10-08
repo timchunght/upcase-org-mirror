@@ -19,18 +19,22 @@ class SubscriptionFulfillment
 
   def fulfill_gained_features
     FeatureFulfillment.new(
+      feature_factory: feature_factory,
       old_plan: NullPlan.new,
-      new_plan: @plan,
-      user: @user
+      new_plan: @plan
     ).fulfill_gained_features
   end
 
   def unfulfill_lost_features
     FeatureFulfillment.new(
+      feature_factory: feature_factory,
       old_plan: @plan,
-      new_plan: NullPlan.new,
-      user: @user
+      new_plan: NullPlan.new
     ).unfulfill_lost_features
+  end
+
+  def feature_factory
+    Features::Factory.new(user: @user)
   end
 
   def update_next_invoice_info

@@ -229,6 +229,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    payload (0.1.0)
     paypal-express (0.4.6)
       activesupport (>= 2.3)
       attr_required (>= 0.0.5)
@@ -438,6 +439,7 @@ DEPENDENCIES
   omniauth (~> 1.2.1)
   omniauth-github (~> 1.1.2)
   paperclip (= 4.1.1)
+  payload
   paypal-express (= 0.4.6)
   pg (= 0.13.2)
   pry-rails

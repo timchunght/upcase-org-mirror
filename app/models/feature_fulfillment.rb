@@ -1,8 +1,8 @@
 # Responsible for fulfilling and unfulfilling features after a user subscribes,
 # cancels, or changes their plan
 class FeatureFulfillment
-  def initialize(new_plan:, old_plan:, user:)
-    @feature_factory = Features::Factory.new(user: user)
+  def initialize(feature_factory:, new_plan:, old_plan:)
+    @feature_factory = feature_factory
     @plan_comparer = PlanComparer.new(new_plan: new_plan, old_plan: old_plan)
   end
 
@@ -20,13 +20,13 @@ class FeatureFulfillment
 
   def gained_features
     plan_comparer.features_gained.map do |feature_string|
-      feature_factory.new(feature_string)
+      feature_factory.new(type: feature_string)
     end
   end
 
   def lost_features
     plan_comparer.features_lost.map do |feature_string|
-      feature_factory.new(feature_string)
+      feature_factory.new(type: feature_string)
     end
   end
 end
