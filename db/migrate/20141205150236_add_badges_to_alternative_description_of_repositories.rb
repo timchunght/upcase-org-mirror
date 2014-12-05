@@ -19,7 +19,7 @@ class AddBadgesToAlternativeDescriptionOfRepositories < ActiveRecord::Migration
   private
 
   def insert_description(repo_name:, description:)
-    insert <<-SQL.squish
+    update <<-SQL.squish
       UPDATE products SET alternative_description = '#{description}'
         WHERE type = 'Repository' AND name = '#{repo_name}'
     SQL
