@@ -57,7 +57,6 @@ feature "Subscriber accesses content" do
   end
 
   scenario "gets added to the GitHub team for a repository" do
-    pending
     repository = create(:repository)
     sign_in_as_user_with_subscription
     stub_github_fulfillment_job
