@@ -7,40 +7,11 @@
   <span class="divider">
     <h4 class="text">Github Repos</h4>
   </span>
+
   <ul class="repos-list">
-    <a href="">
-      <li class="repository">
-        <div class="repo-name">
-        <h1 class="list-title">Payload</h1>
-          <p class="description">Source for our experimental dependency management framework.</p>
-        </div>
-      </li>
-    </a>
-
-    <a href="">
-      <li class="repository">
-        <div class="repo-name">
-          <h1 class="list-title">Upcase Exercises</h1>
-          <p class="description">Source to the repository powering our exercise and review system.</p>
-        </div>
-        <ul class="repo-info">
-          <li><a href="https://codeclimate.com/repos/52f260c4e30ba0359e001874/feed"><img src="https://codeclimate.com/repos/52f260c4e30ba0359e001874/badges/5b5ac054ebd74d061e88/gpa.svg" /></a></li>
-          <li><a href="https://codeclimate.com/repos/52f260c4e30ba0359e001874/feed"><img src="https://codeclimate.com/repos/52f260c4e30ba0359e001874/badges/5b5ac054ebd74d061e88/coverage.svg" /></a></li>
-        </ul>
-      </li>
-    </a>
-
-    <a href="">
-      <li class="repository">
-        <div class="repo-name">
-          <h1 class="list-title">Upcase </h1>
-          <p class="description">Source for the main Upcase repository, including users, billing, video tutorials, and more.</p>
-        </div>
-        <ul class="repo-info">
-          <li><a href="https://codeclimate.com/repos/509bdbd313d6373b2b001546/feed"><img src="https://codeclimate.com/repos/509bdbd313d6373b2b001546/badges/ca2720aded19a6da11e7/gpa.svg" /></a></li>
-          <li><a href="https://codeclimate.com/repos/509bdbd313d6373b2b001546/feed"><img src="https://codeclimate.com/repos/509bdbd313d6373b2b001546/badges/ca2720aded19a6da11e7/coverage.svg" /></a></li>
-        </ul>
-      </li>
-    </a>
+    <%= render(
+      partial: "products/repositories/repository",
+      collection: @catalog.repositories
+    ) %>
   </ul>
 </section>

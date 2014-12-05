@@ -4,9 +4,9 @@
       <h1 class="list-title"><%= repository.name %></h1>
       <p class="description"><%= repository.tagline %></p>
     </div>
+
     <ul class="repo-info">
-      <li></li>
-      <li></li>
+      <%= raw repository.alternative_description %>
     </ul>
   </li>
 <% end %>
